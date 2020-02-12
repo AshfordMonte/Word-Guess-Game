@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Word Guess Game</title>
+    <meta name="description" content="A hang man like game.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script>
+  </head>
+  <body onload="gameSetup()">
+
+    <div>
+      <p>Press any key to get started!</p>
+      <p>Wins: <span id="wins"></span></p>
+    </div>    
+    
+    <div>
+      <p>Current word:</p>
+      <p><span id="currentWord"></span></p>
+    </div>
+
+    <div>
+      <p>Number of Guesses Remaining: <span id="guessRemain"></span></p>
+    </div>
+
+    <div>
+      <p>Letters Already Guessed:</p>
+
+      <p><span id="lettersGuessed"></span></p>
+    </div>
+
+
+
+
+    <script src="assets/javascript/game.js" async defer></script>
+  </body>
+</html>
