@@ -58,6 +58,8 @@ function gameReset() {
   document.getElementById("lettersGuessed").textContent = wrongArray.join(" ");
   document.getElementById("guessRemain").textContent = guessesAllowed;
   }, 1000)
+
+  // Calls album image function and passes previous band name
   bandShowcase(previousWord);
 }
 
@@ -112,8 +114,7 @@ document.onkeyup = function (event) {
   }
 };
 
-// Function to play audio and show image
-
+// Function to show band images
 function bandShowcase(bandName){
   var fileName = ("assets/images/" + bandName + ".jpg");
   console.log(fileName);
