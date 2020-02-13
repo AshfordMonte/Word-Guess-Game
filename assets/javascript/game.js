@@ -16,7 +16,7 @@ var j = 0;
 var guessesAllowed = 12;
 
 
-function gameSetup(){
+function gameSetup() {
   document.getElementById("currentWord").textContent = rightArray.join(" ");
   document.getElementById("guessRemain").textContent = guessesAllowed;
   document.getElementById("wins").textContent = wins;
@@ -24,10 +24,10 @@ function gameSetup(){
 }
 
 
-function gameReset(){
+function gameReset() {
   var previousWord = currentWord;
-  while(previousWord === currentWord){
-  currentWord = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+  while (previousWord === currentWord) {
+    currentWord = wordChoices[Math.floor(Math.random() * wordChoices.length)];
   }
 
   rightArray = new Array(currentWord.length);
@@ -36,12 +36,12 @@ function gameReset(){
   }
   console.log(rightArray);
   console.log(currentWord);
-  document.getElementById("currentWord").textContent = "                                                ";
+  document.getElementById("currentWord").textContent = " ";
   document.getElementById("currentWord").textContent = rightArray.join(" ");
-  document.getElementById("guessRemain").textContent = guessesAllowed;
   document.getElementById("wins").textContent = wins;
   console.log("Reset function called");
   guessesAllowed = 12;
+  document.getElementById("guessRemain").textContent = guessesAllowed;
 }
 
 
@@ -50,7 +50,7 @@ document.onkeyup = function (event) {
   var letterGuessedLower = event.key;
   var letterGuessed = letterGuessedLower.toUpperCase();
   var correctLetter = false;
-  
+
   for (let i = 0; i < currentWord.length; i++) {
     if (letterGuessed === currentWord[i]) {
       rightArray[i] = currentWord[i];
@@ -58,8 +58,10 @@ document.onkeyup = function (event) {
     }
   }
   if (!correctLetter) {
-    wrongArray[j] = letterGuessed;
-    guessesAllowed--;
+    if(!wrongArray.includes(letterGuessed)){
+      wrongArray[j] = letterGuessed;
+      guessesAllowed--;
+    }
   }
   j++;
 
@@ -67,16 +69,19 @@ document.onkeyup = function (event) {
   document.getElementById("lettersGuessed").textContent = wrongArray.join(" ");
   document.getElementById("guessRemain").textContent = guessesAllowed;
 
+  if (guessesAllowed === 0) {
+    gameReset();
+  }
   // Add if statement that will call for game won and pick new word
   var incompleteWord = false;
   for (let i = 0; i < rightArray.length; i++) {
-    
-    if (rightArray[i] === "_"){
+
+    if (rightArray[i] === "_") {
       incompleteWord = true;
     }
   }
 
-  if (incompleteWord === false){
+  if (incompleteWord === false) {
     wins++;
     gameReset();
   }
