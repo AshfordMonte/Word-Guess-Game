@@ -33,6 +33,7 @@ function gameSetup() {
 
 // Main function that will reset the game once the correct word has been typed, or if the user loses
 function gameReset() {
+  console.log("Reset function called");
   // Checks to insure that the same word is not chosen consecutively
   var previousWord = currentWord;
   while (previousWord === currentWord) {
@@ -47,16 +48,17 @@ function gameReset() {
   console.log(rightArray);
   console.log(currentWord);
   // Clears text elements and replaces them with updated values resetting the game
-  document.getElementById("currentWord").textContent = " ";
+  setTimeout(function timeOut() {
   document.getElementById("currentWord").textContent = rightArray.join(" ");
   document.getElementById("wins").textContent = wins;
-  console.log("Reset function called");
+
   guessesAllowed = 12;
   wrongArray = new Array(26);
-  document.getElementById("currentWord").textContent = " ";
+  document.getElementById("lettersGuessed").textContent = " ";
   document.getElementById("lettersGuessed").textContent = wrongArray.join(" ");
   document.getElementById("guessRemain").textContent = guessesAllowed;
-
+  }, 1000)
+  bandShowcase(previousWord);
 }
 
 // Function that is called each time a key is pressed
@@ -113,5 +115,7 @@ document.onkeyup = function (event) {
 // Function to play audio and show image
 
 function bandShowcase(bandName){
-
+  var fileName = ("assets/images/" + bandName + ".jpg");
+  console.log(fileName);
+  document.getElementById("band-image").src = fileName;
 }
